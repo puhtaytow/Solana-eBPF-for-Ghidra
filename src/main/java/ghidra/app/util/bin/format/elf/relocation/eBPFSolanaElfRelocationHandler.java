@@ -43,7 +43,7 @@ public class eBPFSolanaElfRelocationHandler extends ElfRelocationHandler {
         Memory memory = program.getMemory();
 
         int type = relocation.getType();
-        if (type == eBPF_ElfRelocationConstants.R_BPF_NONE) {
+        if (type == eBPF_ElfRelocationType.R_BPF_NONE.typeId) {
             return RelocationResult.SKIPPED;
         }
 
@@ -74,8 +74,7 @@ public class eBPFSolanaElfRelocationHandler extends ElfRelocationHandler {
         int byteLength = 4; // most relocations affect 4-bytes
 
         try {
-            switch (type){
-                case eBPF_ElfRelocationConstants.R_BPF_64_64: {
+            if (type == eBPF_ElfRelocationType.R_BPF_64_64.typeId) {
                     new_value = symbolValue;
 
                     Address refd_va = program.getAddressFactory().getDefaultAddressSpace().getAddress(memory.getInt(imm_offset));
@@ -83,10 +82,9 @@ public class eBPFSolanaElfRelocationHandler extends ElfRelocationHandler {
 
                     memory.setInt(imm_offset, (int)(new_value & 0xffffffff));
                     memory.setInt(imm_offset.add(8), (int)(new_value >> 32));
-                    break;
-                }
-                // R_BPF_64_Relative
-                case 8: {
+            }
+            // R_BPF_64_Relative
+            else if (type == 8) {
                     new_value = symbolValue;
 
                     Address refd_va = program.getAddressFactory().getDefaultAddressSpace().getAddress(memory.getInt(imm_offset));
@@ -105,8 +103,8 @@ public class eBPFSolanaElfRelocationHandler extends ElfRelocationHandler {
                         // 64 bit memory location, write entire 64 bit physical address directly
                         memory.setLong(relocationAddress, refd_pa.getOffset());
                     }
-                }
-                case eBPF_ElfRelocationConstants.R_BPF_64_32: {
+            }
+            else if (type == eBPF_ElfRelocationType.R_BPF_64_32.typeId) {
                     int targetAddr;
                     String call_type;
                     // normally we would put the hash into the immediate field of
@@ -140,15 +138,13 @@ public class eBPFSolanaElfRelocationHandler extends ElfRelocationHandler {
                     // Listing listing = program.getListing();
                     // listing.setComment(relocationAddress, CodeUnit.EOL_COMMENT,
                     //	String.format("%s_%s", call_type, symbolName));
-                    break;
+            }
+            else {
+                if (symbolIndex == 0) {
+                    markAsWarning(program, relocationAddress,
+                            Long.toString(type), "applied relocation with symbol-index of 0", elfRelocationContext.getLog());
                 }
-                default: {
-                    if (symbolIndex == 0) {
-                        markAsWarning(program, relocationAddress,
-                                Long.toString(type), "applied relocation with symbol-index of 0", elfRelocationContext.getLog());
-                    }
-                    return RelocationResult.UNSUPPORTED;
-                }
+                return RelocationResult.UNSUPPORTED;
             }
         } catch (NullPointerException e) {  }
         return new RelocationResult(Status.APPLIED, byteLength);
