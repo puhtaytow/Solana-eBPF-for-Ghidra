@@ -176,7 +176,7 @@ manually via right click, edit, copy the signature and paste it into
 function signature.
                         """);
                         break;
-
+        
 
                     case("abort"):
                         try {
@@ -195,7 +195,7 @@ function signature.
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_panic_"):
                         try {
@@ -214,7 +214,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_log_"):
                         try {
@@ -233,7 +233,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_log_64_"):
                         try {
@@ -252,7 +252,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_log_compute_units_"):
                         try {
@@ -271,7 +271,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_log_pubkey"):
                         try {
@@ -290,7 +290,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_create_program_address"):
                         try {
@@ -309,7 +309,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_try_find_program_address"):
                         try {
@@ -328,7 +328,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_sha256"):
                         try {
@@ -347,7 +347,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_keccak256"):
                         try {
@@ -366,7 +366,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_secp256k1_recover"):
                         try {
@@ -385,7 +385,121 @@ TODO
 TODO
                         """);
                         break;
+        
 
+                    case("sol_curve_validate_point"):
+                        try {
+                            f = parser.parse(null, "u64 sol_curve_validate_point(u64 curve_id, u8 *point_addr, u8 *result)");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
+
+                    case("sol_curve_group_op"):
+                        try {
+                            f = parser.parse(null, "u64 sol_curve_group_op(u64 curve_id, u64 group_op, u8 *left_input_addr, u8 *right_input_addr, u8 *result_point_addr)");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
+
+                    case("sol_curve_multiscalar_mul"):
+                        try {
+                            f = parser.parse(null, "u64 sol_curve_multiscalar_mul(u64 curve_id, u8 *scalars_addr, u8 *points_addr, u64 points_len, u8 *result_point_addr)");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
+
+                    case("sol_alt_bn128_group_op"):
+                        try {
+                            f = parser.parse(null, "u64 sol_alt_bn128_group_op(u64 group_op, u8 *input, u64 input_size, u8 *result)");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
+
+                    case("sol_alt_bn128_compression"):
+                        try {
+                            f = parser.parse(null, "u64 sol_alt_bn128_compression(u64 op, u8 *input, u64 input_size, u8 *result)");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
+
+                    case("sol_big_mod_exp"):
+                        try {
+                            f = parser.parse(null, "u64 sol_big_mod_exp(u8 *params, u8 *result)");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
 
                     case("sol_blake3"):
                         try {
@@ -404,7 +518,26 @@ TODO
 TODO
                         """);
                         break;
+        
 
+                    case("sol_poseidon"):
+                        try {
+                            f = parser.parse(null, "u64 sol_poseidon(u64 parameters, u64 endianness, u8 *vals, u64 val_len, u8[32] hash_result)");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
 
                     case("sol_zk_token_elgamal_op"):
                         try {
@@ -423,7 +556,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_zk_token_elgamal_op_with_lo_hi"):
                         try {
@@ -442,7 +575,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_zk_token_elgamal_op_with_scalar"):
                         try {
@@ -461,7 +594,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_get_clock_sysvar"):
                         try {
@@ -480,7 +613,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_get_epoch_schedule_sysvar"):
                         try {
@@ -499,7 +632,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_get_fees_sysvar"):
                         try {
@@ -518,7 +651,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_get_rent_sysvar"):
                         try {
@@ -537,7 +670,64 @@ TODO
 TODO
                         """);
                         break;
+        
 
+                    case("sol_get_epoch_rewards_sysvar"):
+                        try {
+                            f = parser.parse(null, "u64 sol_get_epoch_rewards_sysvar(void *epoch_rewards_out)");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
+
+                    case("sol_get_last_restart_slot"):
+                        try {
+                            f = parser.parse(null, "u64 sol_get_last_restart_slot(void *last_restart_slot_out)");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
+
+                    case("sol_get_sysvar"):
+                        try {
+                            f = parser.parse(null, "u64 sol_get_sysvar(u8 *sysvar_id_addr, u8 *result, u64 offset, u64 length)");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
 
                     case("sol_memcpy_"):
                         try {
@@ -556,7 +746,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_memmove_"):
                         try {
@@ -575,7 +765,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_memcmp_"):
                         try {
@@ -594,7 +784,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_memset_"):
                         try {
@@ -613,7 +803,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_invoke_signed_c"):
                         try {
@@ -632,7 +822,7 @@ TODO
 TODO: better types
                         """);
                         break;
-
+        
 
                     case("sol_invoke_signed_rust"):
                         try {
@@ -651,7 +841,7 @@ TODO: better types
 TODO: better types
                         """);
                         break;
-
+        
 
                     case("sol_alloc_free_"):
                         try {
@@ -671,7 +861,7 @@ free_addr=0 will allocate and return the allocated pointer
 otherwise free_addr must be a pointer previously returned by this function
                         """);
                         break;
-
+        
 
                     case("sol_set_return_data"):
                         try {
@@ -690,7 +880,7 @@ otherwise free_addr must be a pointer previously returned by this function
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_get_return_data"):
                         try {
@@ -709,7 +899,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_log_data"):
                         try {
@@ -728,7 +918,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_get_processed_sibling_instruction"):
                         try {
@@ -747,7 +937,7 @@ TODO
 TODO
                         """);
                         break;
-
+        
 
                     case("sol_get_stack_height"):
                         try {
@@ -766,7 +956,45 @@ TODO
 TODO
                         """);
                         break;
+        
 
+                    case("sol_remaining_compute_units"):
+                        try {
+                            f = parser.parse(null, "u64 sol_remaining_compute_units()");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
+
+                    case("sol_get_epoch_stake"):
+                        try {
+                            f = parser.parse(null, "u64 sol_get_epoch_stake(u8 *vote_address)");
+                        } catch (CancelledException e) {
+                            return false;
+                        } catch (ParseException e) {
+                            log.appendMsg("Failed parsing solana syscall signature. See exception");
+                            log.appendException(e);
+                            break;
+                        }
+
+                        cmd = new ApplyFunctionSignatureCmd(s.getAddress(), f, SourceType.ANALYSIS);
+                        cmd.applyTo(program, monitor);
+                        func.setComment("""
+TODO
+                        """);
+                        break;
+        
 // ^^^ CODE IS AUTOGENERATED BY syscalls_codegen.py
 
 					default:

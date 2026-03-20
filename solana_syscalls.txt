@@ -45,7 +45,28 @@ u64 sol_keccak256(u8 *data, u64 data_len, u8[32] hash_out)
 u64 sol_secp256k1_recover(u8[32] hash_data, u8 recovery_id, u8[64] signature, u8[64] pubkey_out)
 
 /// TODO
+u64 sol_curve_validate_point(u64 curve_id, u8 *point_addr, u8 *result)
+
+/// TODO
+u64 sol_curve_group_op(u64 curve_id, u64 group_op, u8 *left_input_addr, u8 *right_input_addr, u8 *result_point_addr)
+
+/// TODO
+u64 sol_curve_multiscalar_mul(u64 curve_id, u8 *scalars_addr, u8 *points_addr, u64 points_len, u8 *result_point_addr)
+
+/// TODO
+u64 sol_alt_bn128_group_op(u64 group_op, u8 *input, u64 input_size, u8 *result)
+
+/// TODO
+u64 sol_alt_bn128_compression(u64 op, u8 *input, u64 input_size, u8 *result)
+
+/// TODO
+u64 sol_big_mod_exp(u8 *params, u8 *result)
+
+/// TODO
 u64 sol_blake3(u8 *data, u64 data_len, u8[32] hash_out)
+
+/// TODO
+u64 sol_poseidon(u64 parameters, u64 endianness, u8 *vals, u64 val_len, u8[32] hash_result)
 
 /// TODO
 u64 sol_zk_token_elgamal_op(u64 operation, u8[64] ciphertext0, u8[64] cipertext1, u8[64] ciphertext_out)
@@ -67,6 +88,15 @@ u64 sol_get_fees_sysvar(void *fees_out)
 
 /// TODO
 u64 sol_get_rent_sysvar(void *rent_out)
+
+/// TODO
+u64 sol_get_epoch_rewards_sysvar(void *epoch_rewards_out)
+
+/// TODO
+u64 sol_get_last_restart_slot(void *last_restart_slot_out)
+
+/// TODO
+u64 sol_get_sysvar(u8 *sysvar_id_addr, u8 *result, u64 offset, u64 length)
 
 /// TODO
 u64 sol_memcpy_(u8 *dst, u8 *src, u64 len)
@@ -104,3 +134,9 @@ u64 sol_get_processed_sibling_instruction(u64 index, void *meta, Pubkey *program
 
 /// TODO
 u64 sol_get_stack_height()
+
+/// TODO
+u64 sol_remaining_compute_units()
+
+/// TODO
+u64 sol_get_epoch_stake(u8 *vote_address)
