@@ -2,7 +2,7 @@
 
 This is a rebase of https://github.com/Toizi/eBPF-for-Ghidra which is a fork of https://github.com/Nalen98/eBPF-for-Ghidra.
 
-It adds support to Ghidra to decompile Solana eBPF files. It supports Ghidra 11.0.3.
+It adds support to Ghidra to decompile Anza sBPF files. It supports Ghidra 12.0.4.
 
 # Installation
 
